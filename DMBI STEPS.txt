@@ -1,0 +1,60 @@
+                                                                     PRAC 1b:
+
+EXCEl: powerbi>>>blank report>>import from excel>>select excel file>>load>>>RHS data >>>tick>>>RHS visulation any graph
+SQL  : powerbi>>import from sql server>>enter server name>>select table under your server DB>>>load >>RHS data >>>tick>>>RHS visulation any graph
+GET DATA AND CONNECT :powerbi>>>get data from other sources>>>sql server dB>>connect>>enter server name and db name AdventureWorks2012>>ok
+MY SQL: open sql server management>>>database>>>restore>>>device>>... button>>>add>>both .bak file extension
+O DATA FEED: powerbi>>get data from other sources>>>odatafeed>>>enter https://services.odata.org/V3/Northwind/Northwind.svc/
+
+
+                                               2A. Perform the ETL process to construct the database in SQL Server:
+
+2A:  sql server >>>add .bak files in DB by restore db>>open VS STudio>>>>new project>>>integration service project>>>RHS connection manager RC>>>New connection manager >>> add OLEDB >>click new >>> add adventure file>>>ok>>LHS SSIS tollbox>>>OLEDB SOURCE>>edit>>connection manager>>choose table>>>ok>>oledb destination>>edit>>connection manager>>>choose oldeb destination>>> now add path>>>new rename destination in code>>>ok>>debug
+
+
+
+                                                         2B:Perform the ETL process in Power BI
+
+powerbi>>>ofeed data>>>load>>add columns>>>edit query any 1 column>>>custom column>>>add custom column>>>then manage rltnship in power bi>>>>ok>>>check relation ship in rltnship icon
+
+
+                        3A:Perform data visualization in Power BI and create the data staging area for the selected database
+powerbi>>>setting>>>map and filled map visual ON>>>load data orders customer product>>edit query(order,customer-remove duplicates)
+
+                                       
+
+                                            3B:Create the data staging area for the selected database using Star Schema
+sql server>>>connect>>>server properties>>>security check>>>>>>login folder>>sa new login>>sql server authentication>>password >check status login>>server restart>>>analysis service on server>>>>>>NEW FILE >>OPEN>>FILE>>DATA WARE HOUSE SCRIPT>>REFRESH.
+vs code>>>MULTIDIMENSIONAL PROJECT>>data source>>new data source>wizard>delete and add new>>inherit>>>data source view wizard>>FAct Product and add related table>>>the relationship chart is shown
+
+                                    4A – Create the cube with corresponding dimension and fact table based on OLAP
+
+3B>>>cube>>fact product,dim time,product>>>next>next>next>name cube>>dim date.dim hierarchy>>attribute to hierarchy(year quarter month)>>save>>>file properties>>>full,deploy all,USAMA>>>>then deploy
+
+
+                                          4B – Perform Multi-Dimensional Expressions (MDX) queries for OLAP database
+server>>>cube>>file name>>browse>>dim date-month,year  fact product-quantity>>design mode>>click to execute query>>>>vs >>file>>process click
+
+
+Prac 5A-
+
+excel>>data>>get data>from other sources >>from database>>from analysis services>>connect to Db>>>select database and table>>finish>inser pivot table report>>select table
+
+
+PRAC 5B-
+
+excel containing pivot table>>>>insert column>column clustered chart
+
+
+PRAC 6-
+
+excel >>create table>>data>what if analysis>>>goal seek>>>total 1, value ,3empty.
+data table 
+colum qty
+
+
+
+
+USE [master]
+CREATE LOGIN [NT Service\MSSQLServerOLAPService] FROM WINDOWS;
+ALTER SERVER ROLE sysadmin ADD MEMBER [NT Service\MSSQLServerOLAPService];
